@@ -18,7 +18,7 @@ const getAll = async (req, res, next) => {
   try{
     const products = await productService.getAll()
     res.status(200);
-    res.json(devices);
+    res.json(products);
   }
   catch(err) {
     res.status(400);
