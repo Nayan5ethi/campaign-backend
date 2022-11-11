@@ -32,7 +32,7 @@ async function _delete(id) {
 
 async function getAll() {
     try {
-        const campaigns = await Campaign.find()
+        const campaigns = await Campaign.find().populate('Product')
         if(campaigns.length===0) {
             throw new Error('No Campaign Found')
         }
