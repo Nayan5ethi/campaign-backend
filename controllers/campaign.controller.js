@@ -44,7 +44,7 @@ const _delete = async (req, res, next) => {
 
 const getAll = async (req, res, next) => {
   try{
-    const campaigns = await campaignService.getAll()
+    const campaigns = await campaignService.getAll(req.query.platform, req.query.days)
     res.status(200);
     res.json(campaigns);
   }

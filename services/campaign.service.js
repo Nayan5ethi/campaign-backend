@@ -30,9 +30,14 @@ async function _delete(id) {
     }
 }
 
-async function getAll() {
+async function getAll(platform, n) {
     try {
-        const campaigns = await Campaign.find().populate('Product')
+        const campaigns = await Campaign.find((typeof platform === 'undefined')?{}:{platform}, (typeof n === 'undefined')?{}:{
+            dateEnd: 
+            {
+                $gte: new Date((new Date().getTime() - (n * 24 * 60 * 60 * 1000)))
+            }
+        }).populate('Product')
         if(campaigns.length===0) {
             throw new Error('No Campaign Found')
         }
